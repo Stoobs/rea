@@ -604,7 +604,8 @@ otherwise. Big-endian ARM, Thumb-only, and Cortex-M variants are unsupported.
 `0x0000..0xffff`. 65C02, 65816, cartridge containers, bank switching, and mapper
 semantics are unsupported. `m68k` requires an even entry and decodes the 68040
 superset of the 68000 family; Amiga/Atari containers and vector-table entry
-discovery are unsupported. Windows Ghidra P0 admits raw images only for `6502`. See [raw binary guide](https://github.com/morluto/rea/blob/main/docs/raw-binary.md).
+discovery are unsupported; for those containers follow
+[retro 68000 targets](retro-m68k.md). Windows Ghidra P0 admits raw images only for `6502`. See [raw binary guide](https://github.com/morluto/rea/blob/main/docs/raw-binary.md).
 
 ### Function annotations in Ghidra
 

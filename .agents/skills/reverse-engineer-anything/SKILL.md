@@ -1,8 +1,8 @@
 ---
 name: reverse-engineer-anything
-description: Reverse engineer native, managed, Electron/JavaScript, packaged, firmware, and browser targets with REA, and build agent environments (AgentEnv bundles) of web applications from a live instance or a capture. Use shipped-artifact or requested runtime evidence to explain features, compare versions, decompile code, or guide a reconstruction. Skip REA for ordinary source-repository architecture analysis.
+description: Reverse engineer native, managed, Electron/JavaScript, packaged, firmware, retro 68000 (Amiga, Atari ST, classic Mac), and browser targets with REA, and build agent environments (AgentEnv bundles) of web applications from a live instance or a capture. Use shipped-artifact or requested runtime evidence to explain features, compare versions, decompile code, or guide a reconstruction. Skip REA for ordinary source-repository architecture analysis.
 metadata:
-  version: "54"
+  version: "55"
 ---
 
 # REA
@@ -324,6 +324,12 @@ explicit path or endpoint and do not need it.
   no active target or engine; opaque payloads retain file ranges and SHA-256.
 - PE export directories and ELF dynamic-symbol exports: `inspect_native_exports`
   with an explicit path; portable, no active target or engine.
+- Amiga hunk file, Atari GEMDOS program (`.PRG`/`.TOS`/`.TTP`/`.ACC`), classic
+  Mac 68k application or `CODE` resource, Kickstart/TOS/Mac ROM, or a disk
+  image holding one: read [retro 68000 targets](references/retro-m68k.md)
+  before opening. No container lane parses these yet and omitted `format` does
+  not detect them; flatten and relocate at a recorded base, then `open_binary`
+  with `format: "raw-binary"` and `architecture: "m68k"`.
 - Native executable, library, or analysis database: `open_binary`, then
   use focused analysis tools directly; call `binary_overview` when metadata or
   inventory context is useful and available from the selected provider.
@@ -484,6 +490,9 @@ as complete while required questions remain open.
 
 - Native binaries, managed assemblies, archives, and extraction:
   [references/native-and-artifacts.md](references/native-and-artifacts.md)
+- Amiga, Atari ST and classic Mac 68000 containers, ROMs, OS-call naming,
+  emulator runtime and recompilation:
+  [references/retro-m68k.md](references/retro-m68k.md)
 - ASARs, extracted JavaScript, feature tracing, and version comparison:
   [references/javascript-applications.md](references/javascript-applications.md)
 - Android APK declarations, classes, methods, and static references:
